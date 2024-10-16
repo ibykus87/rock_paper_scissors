@@ -37,4 +37,51 @@ function getHumanChoice () {
     }
 };
 
-getHumanChoice();
+// Step 4: Declare the players score variables
+
+let humanScore = 0;
+let computerScore = 0;
+
+// Step 5: Write the logic to play a single round
+
+// Write a function that takes the human and computer choices increments the round winner`s score and logs a winner announcement
+function playRound (HumanChoice, computerChoice) {
+// 1. Write game logic: rock beats scissor, paper beats rock, scissor beats paper
+    if ( HumanChoice === 'rock' && computerChoice === 'scissors' ) {
+        humanScore++
+        console.log( 'You win! Rock beats Scissor. Your score is: ' + humanScore );
+    }
+    else if ( HumanChoice === 'rock' && computerChoice === 'paper' ) {
+        humanScore--
+        console.log( 'You lose! Paper beats Rock. Your score is: ' + humanScore );
+    }
+    else if ( HumanChoice === 'rock' && computerChoice === 'rock' ) {
+        console.log( 'Thats a tie! Your score is: ' + humanScore );
+    }
+    else if ( HumanChoice === 'paper' && computerChoice === 'scissors' ) {
+        humanScore--
+        console.log( 'You lose! Scissors beats Paper. Your score is: ' + humanScore );
+    }
+    else if ( HumanChoice === 'paper' && computerChoice === 'rock' ) {
+        humanScore++
+        console.log( 'You win! Paper beats Rock. Your score is: ' + humanScore );
+    }
+    else if ( HumanChoice === 'paper' && computerChoice === 'paper' ) {
+        humanScore++
+        console.log( 'Thats a tie! Your score is: ' + humanScore );
+    }
+    else if ( HumanChoice === 'scissors' && computerChoice === 'paper' ) {
+        humanScore++
+        console.log( 'You win! Scissors beats Paper. Your score is: ' + humanScore );
+    }
+    else if ( HumanChoice === 'scissors' && computerChoice === 'rock' ) {
+        humanScore--
+        console.log( 'You lose! Rock beats Scissors. Your score is: ' + humanScore );
+    }
+    else if ( HumanChoice === 'scissors' && computerChoice === 'scissors' ) {
+        humanScore++
+        console.log( 'Thats a tie! Your score is: ' + humanScore );
+    }
+}
+
+
