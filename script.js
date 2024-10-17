@@ -29,59 +29,68 @@ function getHumanChoice () {
 // 2 Convert user input to lower case
     let lowerCaseUserInput = userInput.toLowerCase();
 // 3. Check if human input is a valid choice, return it or let the user know that the input is not valid
-    if ( lowerCaseUserInput === 'rock' || lowerCaseUserInput === 'paper' || lowerCaseUserInput === 'scissors') {
+    if ( lowerCaseUserInput === 'rock' || lowerCaseUserInput === 'paper' || lowerCaseUserInput === 'scissors' ) {
         return( lowerCaseUserInput );
     }
     else {
-        return( console.log( 'Your choice is not valid. Please enter "rock", "paper" or "scissors" into the console' ));
+        return(console.log( 'Your choice is not valid. Please enter "rock", "paper" or "scissors" into the console' ));
     }
 };
 
-// Step 4: Declare the players score variables
+// Step 6: Write the logic to play the entire game of 5 rounds
 
-let humanScore = 0;
-let computerScore = 0;
+// Write a function that calls playRound, keeps track of the scores and declares a winner at the end
+function playGame () {
+    // Step 4: Declare the players score variables
 
-// Step 5: Write the logic to play a single round
+    let humanScore = 0;
+    let computerScore = 0;
 
-// Write a function that takes the human and computer choices increments the round winner`s score and logs a winner announcement
-function playRound (HumanChoice, computerChoice) {
-// 1. Write game logic: rock beats scissor, paper beats rock, scissor beats paper
-    if ( HumanChoice === 'rock' && computerChoice === 'scissors' ) {
-        humanScore++
-        console.log( 'You win! Rock beats Scissor. Your score is: ' + humanScore );
+    // Step 5: Write the logic to play a single round
+
+    // Write a function that takes the human and computer choices increments the round winner`s score and logs a winner announcement
+    function playRound (humanChoice, computerChoice) {
+    // 1. Write game logic: rock beats scissor, paper beats rock, scissor beats paper
+        if ( (humanChoice === 'rock' && computerChoice === 'scissors') || ( humanChoice === 'paper' && computerChoice === 'rock' ) || ( humanChoice === 'scissors' && computerChoice === 'paper' ) ) {
+            humanScore++
+            console.log( 'You win! Rock beats Scissor. Your score is: ' + humanScore );
+            return ( humanScore, computerScore );
+        }
+        else if ( humanChoice ===  computerChoice ) {
+            console.log( 'Thats a tie! Your score is: ' + humanScore );
+            return ( humanScore, computerScore );
+        }
+        else {
+            computerScore++
+            console.log( 'You lose! Your score is: ' + humanScore );
+            return ( humanScore, computerScore );
+        }
     }
-    else if ( HumanChoice === 'rock' && computerChoice === 'paper' ) {
-        humanScore--
-        console.log( 'You lose! Paper beats Rock. Your score is: ' + humanScore );
+
+    // Initiate round with a count of 0
+    let rounds = 0;
+    // Create loop to play 5 rounds
+    // Let the loop run as long as rounds is smaller than 5
+    while (rounds < 5) {
+        // Initiate human and computer selection and get value from the corresponding functions
+        let humanSelection = getHumanChoice();
+        let computerSelection = getComputerChoice();
+        // Only count rounds up if the human entered a valid choice
+        if (humanSelection === 'rock' || humanSelection === 'paper' || humanSelection === 'scissors') {
+            playRound( humanSelection, computerSelection);
+            rounds++
+            console.log(humanSelection + ' ' + computerSelection);
+            console.log(rounds);
+        }       
     }
-    else if ( HumanChoice === 'rock' && computerChoice === 'rock' ) {
-        console.log( 'Thats a tie! Your score is: ' + humanScore );
+    // Declare the winner
+    if (humanScore > computerScore) {
+        console.log('You Won with ' + humanScore + ' Points to ' + computerScore + ' Points');
     }
-    else if ( HumanChoice === 'paper' && computerChoice === 'scissors' ) {
-        humanScore--
-        console.log( 'You lose! Scissors beats Paper. Your score is: ' + humanScore );
+    else {
+        console.log('You Lost with ' + humanScore + ' Points to ' + computerScore + ' Points');
     }
-    else if ( HumanChoice === 'paper' && computerChoice === 'rock' ) {
-        humanScore++
-        console.log( 'You win! Paper beats Rock. Your score is: ' + humanScore );
-    }
-    else if ( HumanChoice === 'paper' && computerChoice === 'paper' ) {
-        humanScore++
-        console.log( 'Thats a tie! Your score is: ' + humanScore );
-    }
-    else if ( HumanChoice === 'scissors' && computerChoice === 'paper' ) {
-        humanScore++
-        console.log( 'You win! Scissors beats Paper. Your score is: ' + humanScore );
-    }
-    else if ( HumanChoice === 'scissors' && computerChoice === 'rock' ) {
-        humanScore--
-        console.log( 'You lose! Rock beats Scissors. Your score is: ' + humanScore );
-    }
-    else if ( HumanChoice === 'scissors' && computerChoice === 'scissors' ) {
-        humanScore++
-        console.log( 'Thats a tie! Your score is: ' + humanScore );
-    }
+   
 }
 
-
+playGame();
