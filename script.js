@@ -53,21 +53,21 @@ function playGame () {
     // 1. Write game logic: rock beats scissor, paper beats rock, scissor beats paper
         if ( (humanChoice === 'rock' && computerChoice === 'scissors') || ( humanChoice === 'paper' && computerChoice === 'rock' ) || ( humanChoice === 'scissors' && computerChoice === 'paper' ) ) {
             humanScore++
-            console.log( 'You win! Rock beats Scissor. Your score is: ' + humanScore );
+            console.log( 'You win this round! Rock beats Scissor. You have got: ' + humanScore + ' Points and the computer got: ' + computerScore + ' Points');
             return ( humanScore, computerScore );
         }
         else if ( humanChoice ===  computerChoice ) {
-            console.log( 'Thats a tie! Your score is: ' + humanScore );
+            console.log( 'Thats a tie! You have got: ' + humanScore + ' Points and the computer got: ' + computerScore + ' Points' );
             return ( humanScore, computerScore );
         }
         else {
             computerScore++
-            console.log( 'You lose! Your score is: ' + humanScore );
+            console.log( 'You lose this round! You have got: ' + humanScore + ' Points and the computer got: ' + computerScore + ' Points' );
             return ( humanScore, computerScore );
         }
     }
 
-    // Initiate round with a count of 0
+    // Initiate round variable with a count of 0
     let rounds = 0;
     // Create loop to play 5 rounds
     // Let the loop run as long as rounds is smaller than 5
@@ -83,14 +83,17 @@ function playGame () {
             console.log(rounds);
         }       
     }
+
     // Declare the winner
     if (humanScore > computerScore) {
-        console.log('You Won with ' + humanScore + ' Points to ' + computerScore + ' Points');
+        console.log('You Won with ' + humanScore + ' Points to ' + computerScore + ' Points!');
+    }
+    else if (humanScore < computerScore){
+        console.log('You Lost with ' + humanScore + ' Points to ' + computerScore + ' Points!');
     }
     else {
-        console.log('You Lost with ' + humanScore + ' Points to ' + computerScore + ' Points');
+        console.log('Thats a tie! The Score is ' + humanScore + ' Points to ' + computerScore + ' Points!');
     }
-   
 }
 
 playGame();
